@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.graphwalker</groupId>
+  <version>4.3.2</version>
+  <artifactId>graphwalker-maven-archetype</artifactId>
+  <name>GraphWalker Example</name>
+
+  <properties>
+    <graphwalker.version>4.3.2</graphwalker.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.graphwalker</groupId>
+      <artifactId>graphwalker-core</artifactId>
+      <version>${graphwalker.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.graphwalker</groupId>
+      <artifactId>graphwalker-io</artifactId>
+      <version>${graphwalker.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.graphwalker</groupId>
+      <artifactId>graphwalker-java</artifactId>
+      <version>${graphwalker.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.graphwalker</groupId>
+      <artifactId>graphwalker-maven-plugin</artifactId>
+      <version>${graphwalker.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.tinylog</groupId>
+      <artifactId>tinylog-api</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.tinylog</groupId>
+      <artifactId>tinylog-impl</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide</artifactId>
+      <version>7.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>net.datafaker</groupId>
+      <artifactId>datafaker</artifactId>
+      <version>1.6.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.24.2</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.1</version>
+        <configuration>
+          <source>9</source>
+          <target>9</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.graphwalker</groupId>
+        <artifactId>graphwalker-maven-plugin</artifactId>
+        <version>${graphwalker.version}</version>
+        <!-- Bind goals to the default lifecycle -->
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate-sources</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
