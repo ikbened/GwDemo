@@ -19,11 +19,11 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 //@GraphWalker(value = "random(edge_coverage(100))", start = "v_InitialState")
-@GraphWalker(value = "quick_random(edge_coverage(100))", start = "v_InitialState")
+//@GraphWalker(value = "quick_random(edge_coverage(100))", start = "v_InitialState")
 //@GraphWalker(value = "random(time_duration(60))", start = "v_InitialState")
 //@GraphWalker(value = "random(length(5))", start = "v_InitialState")
-//@GraphWalker(value = "random(edge_coverage(100) or time_duration(60))", start = "v_InitialState")
-public class SomeSmallTest extends ExecutionContext implements com.detesters.graphwalker.SmallTest {
+@GraphWalker(value = "random(edge_coverage(100) or time_duration(60))", start = "v_InitialState")
+public class SearchTest extends ExecutionContext implements com.detesters.graphwalker.Search {
 
     @Override
     public void v_InitialState() {
@@ -95,6 +95,12 @@ public class SomeSmallTest extends ExecutionContext implements com.detesters.gra
     }
 
     @Override
+    public void e_ProceedToCheckout() {
+        Logger.trace("e_ProceedToCheckout");
+        $("div#blockcart-modal a.btn-primary").click();
+    }
+
+    @Override
     public void v_Product() {
         Logger.trace("v_Product");
         $("span.current-price-value").shouldBe(visible);
@@ -151,11 +157,17 @@ public class SomeSmallTest extends ExecutionContext implements com.detesters.gra
     }
 
     @Override
-    public void v_ShoppingCart() {
-        Logger.trace("v_ShoppingCart");
+    public void v_Confirmation() {
+        Logger.trace("v_Confirmation");
         $("h4.modal-title").shouldHave(text("Product successfully added to your shopping cart"));
         int quantity = Integer.parseInt($("span.product-quantity strong").getText());
         assertThat(quantity).as("quantity").isPositive();
+    }
+
+
+    @Override
+    public void v_ShoppingCart() {
+        Logger.trace("v_ShoppingCart in SearchTest");
     }
 
     @Override
