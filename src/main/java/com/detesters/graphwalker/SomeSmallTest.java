@@ -42,6 +42,13 @@ public class SomeSmallTest extends ExecutionContext implements com.detesters.gra
     }
 
     @Override
+    public void e_IncQuantity() {
+        Logger.trace("e_IncQuantity");
+        $("i.touchspin-up").click();
+        Logger.trace("New quantity=" + $("input#quantity_wanted").getAttribute("value"));
+    }
+
+    @Override
     public void v_Search() {
         Logger.trace("v_Search");
         $(By.name("s")).shouldBe(visible, enabled);
